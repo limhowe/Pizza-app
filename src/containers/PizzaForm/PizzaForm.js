@@ -82,7 +82,12 @@ class PizzaForm extends React.Component {
                 name: values.pizzaSize
               }}
               onChange={toppings => {
-                setFieldValue('toppings', toppings);
+                if (
+                  values.maxToppings &&
+                  values.maxToppings >= toppings.length
+                ) {
+                  setFieldValue('toppings', toppings);
+                }
                 setFieldTouched('toppings', true);
               }}
               onBlur={() => {
